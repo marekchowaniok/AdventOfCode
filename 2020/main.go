@@ -22,6 +22,10 @@ func whichDay(day string) {
 	case "2":
 		fmt.Println("Running day 02")
 		days.Two()
+	case "3":
+		fmt.Println("Running day 03")
+		days.Three()
+
 	default:
 		fmt.Println("Pick day between 1 and 24")
 

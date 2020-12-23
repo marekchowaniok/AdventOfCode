@@ -7,13 +7,16 @@ import (
 	"strings"
 )
 
-func Two() {
-	bytes, err := ioutil.ReadFile("/Users/marek/git/AdventOfCode/2020/inputs/day02.input")
+func Three() {
+	bytes, err := ioutil.ReadFile("/Users/marek/git/AdventOfCode/2020/inputs/day03.input")
 	if err != nil {
 		return
 	}
 
 	split := sliceInput(bytes)
+	//contents := string(bytes)
+	//split := strings.Split(contents, "\n")
+	//split = split[:len(split)-1]
 
 	matches1 := 0
 	matches2 := 0
@@ -52,5 +55,4 @@ func Two() {
 	}
 	fmt.Printf("\n 1st matches1: %d \n", matches1)
 	fmt.Printf("\n 2nd matches2: %d \n", matches2)
-
 }
