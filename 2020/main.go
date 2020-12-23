@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	var day = "1"
+	var day = "2"
 	if len(os.Args) > 1 {
 		day = os.Args[1]
 	}
@@ -21,9 +21,9 @@ func whichDay(day string) {
 		days.One()
 	case "2":
 		fmt.Println("Running day 02")
-
+		days.Two()
 	default:
 		fmt.Println("Pick day between 1 and 24")
-		days.One()
+
 	}
 }
