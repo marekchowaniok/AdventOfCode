@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	var day = "2"
+	var day = "3"
 	if len(os.Args) > 1 {
 		day = os.Args[1]
 	}

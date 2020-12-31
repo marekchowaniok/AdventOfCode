@@ -3,8 +3,6 @@ package days
 import (
 	"fmt"
 	"io/ioutil"
-	"strconv"
-	"strings"
 )
 
 func Three() {
@@ -12,47 +10,39 @@ func Three() {
 	if err != nil {
 		return
 	}
-
 	split := sliceInput(bytes)
-	//contents := string(bytes)
-	//split := strings.Split(contents, "\n")
-	//split = split[:len(split)-1]
 
-	matches1 := 0
-	matches2 := 0
-	for _, s := range split {
-		parsed := strings.Split(s, " ")
-		if len(parsed) != 3 {
-			fmt.Println("Encountered bad line: ", split)
-		}
-		lenSpec := strings.Split(parsed[0], "-")
-		if len(lenSpec) != 2 {
-			fmt.Println("Encountered bad line: ", parsed)
-		}
-		char := rune(parsed[1][0])
-		password := parsed[2]
-		min, err := strconv.Atoi(lenSpec[0])
-		max, err := strconv.Atoi(lenSpec[1])
-		if err != nil {
-			fmt.Printf("Failed to parse %s \n", parsed[0])
-		}
-
-		chars := make(map[rune]int)
-		contains := false
-		for i, c := range password {
-			chars[c]++
-			if (min == i+1 || max == i+1) && (c == char) {
-				contains = !contains
-			}
-		}
-		if contains {
-			matches2++
-		}
-
-		if chars[char] >= min && chars[char] <= max {
-			matches1++
+	trees := make([][]bool, len(split))
+	for i, s := range split {
+		trees[i] = make([]bool, len(s))
+		for j, c := range s {
+			trees[i][j] = (c == '#')
 		}
 	}
-	fmt.Printf("\n 1st matches1: %d \n", matches1)
-	fmt.Printf("\n 2nd matches2: %d \n", matches2)
+
+	//hit := treeHits(trees, 3, 1)
+	//hit := treeHits(trees, 1, 2)
+	fmt.Printf("%d, %d, %d, %d, %d, %d, ", treeHits(trees, 1, 1), treeHits(trees, 3, 1), treeHits(trees, 5, 1), treeHits(trees, 7, 1), treeHits(trees, 1, 2),
+		treeHits(trees, 1, 1)*treeHits(trees, 3, 1)*treeHits(trees, 5, 1)*treeHits(trees, 7, 1)*treeHits(trees, 1, 2))
+	//fmt.Printf("Tree hits: %d \n", hit)
 }
+
+func treeHits(trees [][]bool, right int, down int) int {
+	hit := 0
+	for time := 0; time*down < len(trees); time++ {
+		row := time * down
+		column := (time * right) % len(trees[row])
+		//fmt.Printf("row:%d column:%d => tree:%v\n", row, column, trees[row][column])
+		if trees[row][column] {
+			hit++
+		}
+	}
+	return hit
+}
+
+/*
+row, column
+0,0
+2,1
+4,2
+*/
