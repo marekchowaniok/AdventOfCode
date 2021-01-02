@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	var day = "4"
+	var day = "5"
 	if len(os.Args) > 1 {
 		day = os.Args[1]
 	}
@@ -28,6 +28,9 @@ func whichDay(day string) {
 	case "4":
 		fmt.Println("Running day 04")
 		days.Four()
+	case "5":
+		fmt.Println("Running day 05")
+		days.Five()
 
 	default:
 		fmt.Println("Pick day between 1 and 24")
