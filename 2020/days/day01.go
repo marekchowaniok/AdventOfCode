@@ -14,7 +14,7 @@ func One() {
 				continue
 			}
 			if m+n == 2020 {
-				fmt.Printf("1st return: %#d\t %#d \t\t ==> %#d \n", m, n, m*n)
+				fmt.Printf("1st return: %d\t %d \t\t ==> %d \n", m, n, m*n)
 			}
 
 			for k, o := range slice {
@@ -22,7 +22,7 @@ func One() {
 					continue
 				}
 				if m+n+o == 2020 {
-					fmt.Printf("2nd return: %#d\t %#d \t %#d \t ==> %#d \n", m, n, o, m*n*o)
+					fmt.Printf("2nd return: %d\t %d \t %d \t ==> %d \n", m, n, o, m*n*o)
 				}
 			}
 		}
